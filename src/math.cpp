@@ -13,12 +13,12 @@ double fprime(double x) {
 double Fantiderivative(double x) { 
     return 0.25*x*x*x*x - 1.5*x*x; 
 }
-
 double normalize(double x) {
-    return x;
+    const double y = (x + CFG.offset) * CFG.scale;
+    return std::clamp(y,
+        static_cast<double>(CFG.lo),
+        static_cast<double>(CFG.hi));
 }
-
-
 double computeFunctionValue(double x) {
     return x;  // <== REPLACE WITH PROVIDED IMPLEMENTATION
 }
@@ -35,9 +35,14 @@ double computeInverseDerivative(double x) {
     return x;  // <== REPLACE WITH PROVIDED IMPLEMENTATION
 }
 
+
+
 double evaluate(double x, ModeSet modes) {
-    double result = x;
-    // <== REPLACE WITH PROVIDED FUNCTION CALL
+
+
+    double result = normalize(x);
+
+    
     return result;
 }
 
